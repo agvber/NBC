@@ -10,6 +10,10 @@ class Calculator {
         SubstractOperation()
     }
 
+    private val multiplyOperation by lazy(LazyThreadSafetyMode.NONE) {
+        MultiplyOperation()
+    }
+
     fun add(number: Long, other: Long): Long {
         return addOperation.calculator(number, other)
     }
@@ -23,7 +27,7 @@ class Calculator {
     }
 
     fun times(number: Long, other: Long): Long {
-        return number * other
+        return multiplyOperation.calculator(number, other)
     }
 
     fun remain(number: Long, other: Long): Long {
