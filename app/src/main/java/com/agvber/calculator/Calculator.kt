@@ -2,8 +2,12 @@ package com.agvber.calculator
 
 class Calculator {
 
+    private val addOperation by lazy(LazyThreadSafetyMode.NONE) {
+        AddOperation()
+    }
+
     fun add(number: Long, other: Long): Long {
-        return number + other
+        return addOperation.calculator(number, other)
     }
 
     fun minus(number: Long, other: Long): Long {
