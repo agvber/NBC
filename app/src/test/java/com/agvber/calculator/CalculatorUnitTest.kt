@@ -43,4 +43,11 @@ class CalculatorUnitTest {
         val result = calculator.remain(10, 2)
         Assert.assertEquals(result, 0)
     }
+
+    @Test
+    fun `추가 연산 테스트`() {
+        val add = calculator.add(5, 5)
+        val times = calculator.times(add, 10)
+        Assert.assertEquals(times, 100)
+    }
 }
