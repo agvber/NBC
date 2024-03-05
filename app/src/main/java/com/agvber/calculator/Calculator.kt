@@ -17,4 +17,8 @@ class Calculator {
     fun times(number: Long, other: Long): Long {
         return number * other
     }
+
+    fun remain(number: Long, other: Long): Long {
+        return number % other
+    }
 }

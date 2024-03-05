@@ -37,4 +37,10 @@ class CalculatorUnitTest {
         val result = calculator.times(12, 12)
         Assert.assertEquals(result, 144)
     }
+
+    @Test
+    fun `나머지 테스트`() {
+        val result = calculator.remain(10, 2)
+        Assert.assertEquals(result, 0)
+    }
 }
