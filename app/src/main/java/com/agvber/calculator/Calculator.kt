@@ -14,6 +14,10 @@ class Calculator {
         MultiplyOperation()
     }
 
+    private val divideOperation by lazy(LazyThreadSafetyMode.NONE) {
+        DivideOperation()
+    }
+
     fun add(number: Long, other: Long): Long {
         return addOperation.calculator(number, other)
     }
@@ -23,7 +27,7 @@ class Calculator {
     }
 
     fun divide(number: Long, other: Long): Long {
-        return number / other
+        return divideOperation.calculator(number, other)
     }
 
     fun times(number: Long, other: Long): Long {
