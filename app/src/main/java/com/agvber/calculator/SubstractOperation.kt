@@ -1,8 +1,8 @@
 package com.agvber.calculator
 
-class SubstractOperation {
+class SubstractOperation : AbstractOperation() {
 
-    fun calculator(number: Long, other: Long): Long {
+    override fun calculator(number: Long, other: Long): Long {
         return number - other
     }
 }

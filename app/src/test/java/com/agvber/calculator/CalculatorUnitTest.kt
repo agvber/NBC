@@ -11,7 +11,17 @@ class CalculatorUnitTest {
 
     @Before
     fun init() {
-        calculator = Calculator()
+        val addOperation: AbstractOperation = AddOperation()
+        val substractOperation: AbstractOperation = SubstractOperation()
+        val multiplyOperation: AbstractOperation = MultiplyOperation()
+        val divideOperation: AbstractOperation = DivideOperation()
+
+        calculator = Calculator(
+            addOperation = addOperation,
+            substractOperation = substractOperation,
+            multiplyOperation = multiplyOperation,
+            divideOperation = divideOperation
+        )
     }
 
     @Test

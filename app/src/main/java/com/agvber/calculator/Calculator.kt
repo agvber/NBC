@@ -1,22 +1,11 @@
 package com.agvber.calculator
 
-class Calculator {
-
-    private val addOperation by lazy(LazyThreadSafetyMode.NONE) {
-        AddOperation()
-    }
-
-    private val substractOperation by lazy(LazyThreadSafetyMode.NONE) {
-        SubstractOperation()
-    }
-
-    private val multiplyOperation by lazy(LazyThreadSafetyMode.NONE) {
-        MultiplyOperation()
-    }
-
-    private val divideOperation by lazy(LazyThreadSafetyMode.NONE) {
-        DivideOperation()
-    }
+class Calculator(
+    private val addOperation: AbstractOperation,
+    private val substractOperation: AbstractOperation,
+    private val multiplyOperation: AbstractOperation,
+    private val divideOperation: AbstractOperation
+) {
 
     fun add(number: Long, other: Long): Long {
         return addOperation.calculator(number, other)
