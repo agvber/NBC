@@ -6,12 +6,16 @@ class Calculator {
         AddOperation()
     }
 
+    private val substractOperation by lazy(LazyThreadSafetyMode.NONE) {
+        SubstractOperation()
+    }
+
     fun add(number: Long, other: Long): Long {
         return addOperation.calculator(number, other)
     }
 
     fun minus(number: Long, other: Long): Long {
-        return number - other
+        return substractOperation.calculator(number, other)
     }
 
     fun divide(number: Long, other: Long): Long {
