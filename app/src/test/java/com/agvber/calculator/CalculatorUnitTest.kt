@@ -50,4 +50,14 @@ class CalculatorUnitTest {
         val times = calculator.times(add, 10)
         Assert.assertEquals(times, 100)
     }
+
+    @Test
+    @Synchronized
+    fun `무한 반복문 계산 테스트`() { // 이게 맞을까???
+        var number = 0L
+        while (true) {
+            number += calculator.add(1, 1)
+            println(number)
+        }
+    }
 }
