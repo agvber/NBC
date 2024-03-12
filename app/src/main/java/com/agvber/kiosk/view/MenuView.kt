@@ -24,4 +24,16 @@ class MenuView {
                     "0. 뒤로가기      | 뒤로가기"
         )
     }
+
+    fun printFrozenCustardMenu() {
+        println(
+            "[ Frozen Custard MENU ]\n" +
+                    "1. Strawberry Candy Ice cream   | W 5.9 | 상큼한 딸기 소르베&달콤한 딸기 아이스크림에 딸기 리본과 크리스탈 슈가, 팝핑 캔디가 톡톡\n" +
+                    "2. Bonjour, Macaron             | W 6.9 | 부드러운 마스카포네 아이스크림과 마카롱, 초콜릿의 달콤한 만남!\n" +
+                    "3. Peach Yogurt                 | W 3.4 | 상큼한 복숭아 요거트, 복숭아 샤베트에 복숭아 과육이 가득!\n" +
+                    "3. Mint Chocolate BonBon        | W 2.9 | 민트 아이스크림에 달콤한 초콜릿칩과 봉봉 프레첼 볼이 가득!\n" +
+                    "4. Mango Tango                  | W 3.4 | 부드럽고 상큼한 열대과일, 입 안 가득 진한 망고 향이 가득!\n" +
+                    "0. 뒤로가기                      | 뒤로가기"
+        )
+    }
 }
