@@ -1,8 +1,8 @@
 package com.agvber.kiosk.view
 
-class MenuView {
+class InputView {
 
-    fun printMenu() {
+    fun inputInitMenu(): String {
         println(
             "[ SHAKESHACK MENU ]\n" +
                     "1. Burgers         | 앵거스 비프 통살을 다져만든 버거\n" +
@@ -11,9 +11,10 @@ class MenuView {
                     "4. Beer            | 뉴욕 브루클린 브루어리에서 양조한 맥주\n" +
                     "0. 종료            | 프로그램 종료"
         )
+        return readln()
     }
 
-    fun printBurgersMenu() {
+    fun inputBurgersMenu(): String {
         println(
             "[ Burgers MENU ]\n" +
                     "1. ShackBurger   | W 6.9 | 토마토, 양상추, 쉑소스가 토핑된 치즈버거\n" +
@@ -23,9 +24,10 @@ class MenuView {
                     "4. Hamburger     | W 5.4 | 비프패티를 기반으로 야채가 들어간 기본버거\n" +
                     "0. 뒤로가기      | 뒤로가기"
         )
+        return readln()
     }
 
-    fun printFrozenCustardMenu() {
+    fun inputFrozenCustardMenu(): String {
         println(
             "[ Frozen Custard MENU ]\n" +
                     "1. Strawberry Candy Ice cream   | W 5.9 | 상큼한 딸기 소르베&달콤한 딸기 아이스크림에 딸기 리본과 크리스탈 슈가, 팝핑 캔디가 톡톡\n" +
@@ -35,9 +37,10 @@ class MenuView {
                     "4. Mango Tango                  | W 3.4 | 부드럽고 상큼한 열대과일, 입 안 가득 진한 망고 향이 가득!\n" +
                     "0. 뒤로가기                      | 뒤로가기"
         )
+        return readln()
     }
 
-    fun printDrinksMenu() {
+    fun inputDrinksMenu(): String {
         println(
             "[ Drinks MENU ]\n" +
                     "1. Coke       | W 1.9 | 언제 어디서든 일상 속 마법 같은 짜릿한 순간을 함께 해온 코카-콜라. 130년 이상 변하지 않는 짜릿한 맛, 독창적인 디자인으로 대중문화의 아이콘으로 함께 해왔습니다.\n" +
@@ -47,9 +50,10 @@ class MenuView {
                     "4. Dr Pepper  | W 1.4 | 1885년 탄생한 닥터페퍼는 독특한 맛과 톡 쏘는 탄산으로 마실수록 빠져드는 경험을 선사합니다.\n" +
                     "0. 뒤로가기    | 뒤로가기"
         )
+        return readln()
     }
 
-    fun printBeerMenu() {
+    fun inputBeerMenu(): String {
         println(
             "[ Beer MENU ]\n" +
                     "1. Asahi      | W 1.9 | 갓 따른 생맥주 같은 부드러운 거품과 목 넘김!\n" +
@@ -59,5 +63,6 @@ class MenuView {
                     "4. TERRA      | W 1.4 | 이 맛이 청정라거다!\n" +
                     "0. 뒤로가기    | 뒤로가기"
         )
+        return readln()
     }
 }
