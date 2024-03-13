@@ -1,9 +1,11 @@
 package com.agvber.kiosk.model.drink
 
-abstract class Drink {
+import com.agvber.kiosk.model.KioskMenu
 
-    abstract val name: String
-    abstract val price: Int
+abstract class Drink: KioskMenu {
 
-    abstract fun displayInfo(): String
+    abstract override val name: String
+    abstract override val price: Int
+
+    abstract override fun displayInfo(): String
 }
