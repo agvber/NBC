@@ -53,11 +53,16 @@ private fun loop(
     view: () -> Int,
 ) {
     while (true) {
-        if (view() == breakNumber) {
-            if (last != null) {
-                last()
+        try {
+            if (view() == breakNumber) {
+                if (last != null) {
+                    last()
+                }
+                break
             }
-            break
+        } catch (e: Exception) {
+            println("번호를 잘 못 입력하셨습니다.")
+            continue
         }
     }
 }
