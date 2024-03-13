@@ -1,11 +1,11 @@
 package com.agvber.kiosk.model.Beer
 
-class Asahi {
+class Asahi: Beer() {
 
-    val name: String = "Asahi"
-    val price: Int = 19000
+    override val name: String = "Asahi"
+    override val price: Int = 19000
 
-    fun displayInfo(): String {
+    override fun displayInfo(): String {
         return "갓 따른 생맥주 같은 부드러운 거품과 목 넘김!"
     }
 }
