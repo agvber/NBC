@@ -16,6 +16,7 @@ class KioskController(
             }
         ) {
             val orderNumber = inputView.inputInitMenu().toInt()
+                .also { require((0..4).contains(it)) }
 
             checkBurgersMenu(orderNumber)
             checkFrozenCustardMenu(orderNumber)
@@ -28,22 +29,34 @@ class KioskController(
 
     private fun checkBurgersMenu(number: Int) {
         if (number != 1) return
-        loop(0) { inputView.inputBurgersMenu().toInt() }
+        loop(0) {
+            inputView.inputBurgersMenu().toInt()
+                .also { require((0..4).contains(it)) }
+        }
     }
 
     private fun checkFrozenCustardMenu(number: Int) {
         if (number != 2) return
-        loop(0) { inputView.inputFrozenCustardMenu().toInt() }
+        loop(0) {
+            inputView.inputFrozenCustardMenu().toInt()
+                .also { require((0..4).contains(it)) }
+        }
     }
 
     private fun checkDrinksMenu(number: Int) {
         if (number != 3) return
-        loop(0) { inputView.inputDrinksMenu().toInt() }
+        loop(0) {
+            inputView.inputDrinksMenu().toInt()
+                .also { require((0..4).contains(it)) }
+        }
     }
 
     private fun checkBeerMenu(number: Int) {
         if (number != 4) return
-        loop(0) { inputView.inputBeerMenu().toInt() }
+        loop(0) {
+            inputView.inputBeerMenu().toInt()
+                .also { require((0..4).contains(it)) }
+        }
     }
 }
 
