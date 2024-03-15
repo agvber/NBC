@@ -28,18 +28,24 @@ class KioskController(
 ) {
     
     fun run() {
-        while (true) {
-            val orderNumber = inputView.inputInitMenu().toInt()
+        var isRunning = true
+        while (isRunning) {
+            runCatching { inputView.inputInitMenu().toInt() }
+                .onFailure {
+                    outputView.printNumberError()
+                }
+                .onSuccess { orderNumber ->
+                    if (orderNumber == 0) {
+                        outputView.shutdownProgram()
+                        isRunning = false
+                    }
 
-            if (orderNumber == 0) {
-                outputView.shutdownProgram()
-                break
-            }
-            checkInitMenu(orderNumber)
-            checkBurgersMenu(orderNumber)
-            checkFrozenCustardMenu(orderNumber)
-            checkDrinksMenu(orderNumber)
-            checkBeerMenu(orderNumber)
+                    checkInitMenu(orderNumber)
+                    checkBurgersMenu(orderNumber)
+                    checkFrozenCustardMenu(orderNumber)
+                    checkDrinksMenu(orderNumber)
+                    checkBeerMenu(orderNumber)
+                }
         }
     }
 
@@ -50,55 +56,87 @@ class KioskController(
     private fun checkBurgersMenu(number: Int) {
         if (number != 1) return
 
-        val order = inputView.inputBurgersMenu().toInt()
-        when (order) {
-            1 -> menus.add(ShackBurger())
-            2 -> menus.add(SmokeShack())
-            3 -> menus.add(Cheeseburger())
-            4 -> menus.add(Hamburger())
-            else -> throw IllegalArgumentException()
+        while (true) {
+            try {
+                val order = inputView.inputBurgersMenu().toInt()
+                when (order) {
+                    0 -> {}
+                    1 -> menus.add(ShackBurger())
+                    2 -> menus.add(SmokeShack())
+                    3 -> menus.add(Cheeseburger())
+                    4 -> menus.add(Hamburger())
+                    else -> throw IllegalArgumentException()
+                }
+                break
+            } catch (e: Exception) {
+                outputView.printNumberError()
+            }
         }
     }
 
     private fun checkFrozenCustardMenu(number: Int) {
         if (number != 2) return
 
-        val order = inputView.inputFrozenCustardMenu().toInt()
-        when (order) {
-            1 -> menus.add(StrawberryCandyIceCream())
-            2 -> menus.add(BonjourMacaron())
-            3 -> menus.add(PeachYogurt())
-            4 -> menus.add(MintChocolateBonBon())
-            5 -> menus.add(MangoTango())
-            else -> throw IllegalArgumentException()
+        while (true) {
+            try {
+                val order = inputView.inputFrozenCustardMenu().toInt()
+                when (order) {
+                    0 -> {}
+                    1 -> menus.add(StrawberryCandyIceCream())
+                    2 -> menus.add(BonjourMacaron())
+                    3 -> menus.add(PeachYogurt())
+                    4 -> menus.add(MintChocolateBonBon())
+                    5 -> menus.add(MangoTango())
+                    else -> throw IllegalArgumentException()
+                }
+                break
+            } catch (e: Exception) {
+                outputView.printNumberError()
+            }
         }
     }
 
     private fun checkDrinksMenu(number: Int) {
         if (number != 3) return
 
-        val order = inputView.inputDrinksMenu().toInt()
-        when (order) {
-            1 -> menus.add(Coke())
-            2 -> menus.add(Sprite())
-            3 -> menus.add(Cider())
-            4 -> menus.add(Fanta())
-            5 -> menus.add(DrPepper())
-            else -> throw IllegalArgumentException()
+        while (true) {
+            try {
+                val order = inputView.inputDrinksMenu().toInt()
+                when (order) {
+                    0 -> {}
+                    1 -> menus.add(Coke())
+                    2 -> menus.add(Sprite())
+                    3 -> menus.add(Cider())
+                    4 -> menus.add(Fanta())
+                    5 -> menus.add(DrPepper())
+                    else -> throw IllegalArgumentException()
+                }
+                break
+            } catch (e: Exception) {
+                outputView.printNumberError()
+            }
         }
     }
 
     private fun checkBeerMenu(number: Int) {
         if (number != 4) return
 
-        val order = inputView.inputBeerMenu().toInt()
-        when (order) {
-            1 -> menus.add(Asahi())
-            2 -> menus.add(Cass())
-            3 -> menus.add(Cider())
-            4 -> menus.add(Fanta())
-            5 -> menus.add(Terra())
-            else -> throw IllegalArgumentException()
+        while (true) {
+            try {
+                val order = inputView.inputBeerMenu().toInt()
+                when (order) {
+                    0 -> {}
+                    1 -> menus.add(Asahi())
+                    2 -> menus.add(Cass())
+                    3 -> menus.add(Cider())
+                    4 -> menus.add(Fanta())
+                    5 -> menus.add(Terra())
+                    else -> throw IllegalArgumentException()
+                }
+                break
+            } catch (e: Exception) {
+                outputView.printNumberError()
+            }
         }
     }
 }
