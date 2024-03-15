@@ -35,12 +35,16 @@ class KioskController(
                 outputView.shutdownProgram()
                 break
             }
-
+            checkInitMenu(orderNumber)
             checkBurgersMenu(orderNumber)
             checkFrozenCustardMenu(orderNumber)
             checkDrinksMenu(orderNumber)
             checkBeerMenu(orderNumber)
         }
+    }
+
+    private fun checkInitMenu(number: Int) {
+        require((0..4).contains(number))
     }
 
     private fun checkBurgersMenu(number: Int) {
