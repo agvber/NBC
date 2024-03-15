@@ -20,6 +20,8 @@ import com.agvber.kiosk.model.icecream.PeachYogurt
 import com.agvber.kiosk.model.icecream.StrawberryCandyIceCream
 import com.agvber.kiosk.view.InputView
 import com.agvber.kiosk.view.OutputView
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class KioskController(
     private val inputView: InputView,
@@ -28,8 +30,11 @@ class KioskController(
 ) {
     
     fun run() {
+        val money = showMeTheMoney()
         var isRunning = true
         while (isRunning) {
+            outputView.printMoney(money)
+
             runCatching { inputView.inputInitMenu().toInt() }
                 .onFailure {
                     outputView.printNumberError()
@@ -47,6 +52,12 @@ class KioskController(
                     checkBeerMenu(orderNumber)
                 }
         }
+    }
+
+    private fun showMeTheMoney(): Int {
+        val range = 12000..69000
+        val random = Random.nextInt(range)
+        return random
     }
 
     private fun checkInitMenu(number: Int) {
