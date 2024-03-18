@@ -25,7 +25,7 @@ class SignInActivity : AppCompatActivity() {
                 showLoginFailedToast()
                 return@setOnClickListener
             }
-            startSignUpActivity(idEditText.text.toString(), passwordEditText.text.toString())
+            startHomeActivity(idEditText.text.toString(), passwordEditText.text.toString())
             showLoginSuccessToast()
         }
 
