@@ -24,6 +24,15 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val intent = intent
+            intent.apply {
+                putExtra(HomeActivity.ID, idEditText.text.toString())
+                putExtra(HomeActivity.PASSWORD, passwordEditText.text.toString())
+                putExtra(HomeActivity.NAME, nameEditText.text.toString())
+                putExtra(HomeActivity.AGE, 24)
+                putExtra(HomeActivity.MBTI, "INFJ")
+            }
+            setResult(200, intent)
             finish()
         }
     }
