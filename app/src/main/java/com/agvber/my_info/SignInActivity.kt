@@ -30,10 +30,6 @@ class SignInActivity : AppCompatActivity() {
         }
 
         registerButton.setOnClickListener {
-            if (idEditText.text.isBlank() || passwordEditText.text.isBlank()) {
-                showLoginFailedToast()
-                return@setOnClickListener
-            }
             startSignUpActivity(idEditText.text.toString(), passwordEditText.text.toString())
         }
     }
