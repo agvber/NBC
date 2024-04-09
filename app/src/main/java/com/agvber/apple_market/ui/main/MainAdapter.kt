@@ -11,6 +11,7 @@ import java.text.NumberFormat
 
 class MainAdapter(
     private val items: List<Post>,
+    private val itemClickListener: (Post) -> Unit,
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     private val numberFormat = NumberFormat.getInstance()
 
@@ -23,9 +24,14 @@ class MainAdapter(
                 itemImageView.setImageResource(currentItem.image)
                 titleTextView.text = currentItem.name
                 addressTextView.text = currentItem.address
-                priceTextView.text = "${numberFormat.format(currentItem.price)}${context.getString(R.string.currency)}"
+                priceTextView.text =
+                    "${numberFormat.format(currentItem.price)}${context.getString(R.string.currency)}"
                 chatCountTextView.text = currentItem.chat.toString()
                 likeCountTextView.text = currentItem.like.toString()
+
+                root.setOnClickListener {
+                    itemClickListener(currentItem)
+                }
             }
         }
     }

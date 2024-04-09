@@ -18,4 +18,8 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
     }
+
+    companion object {
+        const val POST_DATA = "post_data"
+    }
 }

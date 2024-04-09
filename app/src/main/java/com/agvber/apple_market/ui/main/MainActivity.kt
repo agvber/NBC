@@ -5,6 +5,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,8 @@ import com.agvber.apple_market.R
 import com.agvber.apple_market.data.PreviewDataBase
 import com.agvber.apple_market.data.PreviewDataSource
 import com.agvber.apple_market.databinding.ActivityMainBinding
+import com.agvber.apple_market.model.Post
+import com.agvber.apple_market.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -47,16 +50,28 @@ class MainActivity : AppCompatActivity() {
         binding.notificationImageView.setOnClickListener {
             showNotification(1, getNotificationBuilder())
         }
+        createMainRecyclerview()
+    }
 
-        binding.mainRecyclerView.adapter = MainAdapter(db.getItem())
+    private fun createMainRecyclerview() {
+        binding.mainRecyclerView.adapter = MainAdapter(db.getItem()) {
+            startDetailActivity(it)
+        }
+        binding.mainRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.mainRecyclerView.addItemDecoration(
             DividerItemDecoration(
                 this,
                 LinearLayoutManager.VERTICAL
             )
         )
-        binding.mainRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun startDetailActivity(post: Post) {
+        val intent = Intent(this, DetailActivity::class.java).apply {
+            putExtra(DetailActivity.POST_DATA, post)
+        }
+        startActivity(intent)
     }
 
     private fun showNotification(
