@@ -1,8 +1,20 @@
 package com.agvber.apple_market
 
+import android.Manifest
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -24,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        createNotificationChannel()
+
+        binding.notificationImageView.setOnClickListener {
+            showNotification(1, getNotificationBuilder())
+        }
 
         binding.mainRecyclerView.adapter = MainAdapter(db.getItem())
         binding.mainRecyclerView.addItemDecoration(
@@ -34,5 +51,55 @@ class MainActivity : AppCompatActivity() {
         )
         binding.mainRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun showNotification(
+        id: Int,
+        notification: Notification,
+    ) {
+        with(NotificationManagerCompat.from(this)) {
+            if (ActivityCompat.checkSelfPermission(
+                    this@MainActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                Toast.makeText(
+                    this@MainActivity,
+                    getString(R.string.require_notification_permission),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@with
+            }
+            // notificationId is a unique int for each notification that you must define.
+            notify(id, notification)
+        }
+    }
+
+    private fun getNotificationBuilder(): Notification {
+        return NotificationCompat.Builder(this, KEYWORD_NOTIFICATION_ID)
+            .setSmallIcon(R.drawable.ic_notifications)
+            .setContentTitle(getString(R.string.notificationTitle))
+            .setContentText(getString(R.string.notificationContent))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is not in the Support Library.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.notificationTitle)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(KEYWORD_NOTIFICATION_ID, name, importance)
+            // Register the channel with the system.
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    companion object {
+
+        const val KEYWORD_NOTIFICATION_ID = "keyword_notification"
     }
 }

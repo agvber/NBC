@@ -2,4 +2,8 @@
     <string name="app_name">APPLE_MARKET</string>
     
     <string name="currency">원</string>
+<!--  Notification  -->
+    <string name="notificationTitle">키워드 알림</string>
+    <string name="notificationContent">설정한 키워드에 대한 알림이 도착했습니다!</string>
+    <string name="require_notification_permission">알림 권한 부족</string>
 </resources>
