@@ -9,12 +9,13 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.graphics.drawable.IconCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -36,7 +37,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         createNotificationChannel()
+        onBackPressedDispatcher.addCallback(this@MainActivity) {
+            showAlertDialog()
+        }
 
         binding.notificationImageView.setOnClickListener {
             showNotification(1, getNotificationBuilder())
@@ -96,6 +101,18 @@ class MainActivity : AppCompatActivity() {
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
+    }
+
+    private fun showAlertDialog() {
+        val dialog = AlertDialog.Builder(this).run {
+            setIcon(R.drawable.ic_sms)
+            setTitle(getString(R.string.exit_dialog_title))
+            setMessage(getString(R.string.exit_dialog_content))
+            setPositiveButton(getString(R.string.exit_dialog_positive_button)) { _, _ -> finish() }
+            setNegativeButton(getString(R.string.exit_dialog_negative_button)) { _, _ -> }
+            create()
+        }
+        dialog.show()
     }
 
     companion object {

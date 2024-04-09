@@ -6,4 +6,10 @@
     <string name="notificationTitle">키워드 알림</string>
     <string name="notificationContent">설정한 키워드에 대한 알림이 도착했습니다!</string>
     <string name="require_notification_permission">알림 권한 부족</string>
+
+<!-- Exit Dialog  -->
+    <string name="exit_dialog_title">종료</string>
+    <string name="exit_dialog_content">정말 종료하시겠습니까?</string>
+    <string name="exit_dialog_positive_button">확인</string>
+    <string name="exit_dialog_negative_button">취소</string>
 </resources>
