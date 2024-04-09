@@ -1,25 +1,28 @@
 package com.agvber.apple_market
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.agvber.apple_market.databinding.RecyclerviewMainBinding
 import com.agvber.apple_market.model.Post
+import java.text.NumberFormat
 
 class MainAdapter(
     private val items: List<Post>,
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+    private val numberFormat = NumberFormat.getInstance()
 
     inner class ViewHolder(private val binding: RecyclerviewMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int) {
+        fun bind(context: Context, position: Int) {
             val currentItem = items[position]
             with(binding) {
                 itemImageView.setImageResource(currentItem.image)
                 titleTextView.text = currentItem.name
                 addressTextView.text = currentItem.address
-                priceTextView.text = currentItem.price.toString()
+                priceTextView.text = "${numberFormat.format(currentItem.price)}${context.getString(R.string.currency)}"
                 chatCountTextView.text = currentItem.chat.toString()
                 likeCountTextView.text = currentItem.like.toString()
             }
@@ -37,7 +40,7 @@ class MainAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(holder.itemView.context, position)
     }
 
     override fun getItemCount(): Int = items.size
