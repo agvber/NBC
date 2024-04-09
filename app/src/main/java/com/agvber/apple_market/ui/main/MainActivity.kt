@@ -43,14 +43,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         createNotificationChannel()
-        onBackPressedDispatcher.addCallback(this@MainActivity) {
-            showAlertDialog()
-        }
+        addBackButtonListener()
+        createMainRecyclerview()
 
         binding.notificationImageView.setOnClickListener {
             showNotification(1, getNotificationBuilder())
         }
-        createMainRecyclerview()
+    }
+
+    private fun addBackButtonListener() {
+        onBackPressedDispatcher.addCallback(this@MainActivity) {
+            showAlertDialog()
+        }
     }
 
     private fun createMainRecyclerview() {
