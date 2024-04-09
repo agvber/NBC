@@ -1,9 +1,10 @@
-package com.agvber.apple_market
+package com.agvber.apple_market.ui.main
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.agvber.apple_market.R
 import com.agvber.apple_market.databinding.RecyclerviewMainBinding
 import com.agvber.apple_market.model.Post
 import java.text.NumberFormat

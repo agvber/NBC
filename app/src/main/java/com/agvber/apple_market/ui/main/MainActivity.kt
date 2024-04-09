@@ -1,4 +1,4 @@
-package com.agvber.apple_market
+package com.agvber.apple_market.ui.main
 
 import android.Manifest
 import android.app.Notification
@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.agvber.apple_market.R
 import com.agvber.apple_market.data.PreviewDataBase
 import com.agvber.apple_market.data.PreviewDataSource
 import com.agvber.apple_market.databinding.ActivityMainBinding
