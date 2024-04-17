@@ -18,6 +18,12 @@ class MainAdapter(
     inner class ViewHolder(private val binding: RecyclerviewMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.root.setOnClickListener {
+                itemClickListener(items[bindingAdapterPosition])
+            }
+        }
+
         fun bind(context: Context, position: Int) {
             val currentItem = items[position]
             with(binding) {
@@ -28,10 +34,6 @@ class MainAdapter(
                     "${numberFormat.format(currentItem.price)}${context.getString(R.string.currency)}"
                 chatCountTextView.text = currentItem.chat.toString()
                 likeCountTextView.text = currentItem.like.toString()
-
-                root.setOnClickListener {
-                    itemClickListener(currentItem)
-                }
             }
         }
     }
