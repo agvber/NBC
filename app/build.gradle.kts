@@ -34,6 +34,14 @@ android {
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+
+        // For AGP 4.1+
+        isCoreLibraryDesugaringEnabled = true
+        // For AGP 4.0
+        // coreLibraryDesugaringEnabled = true
+
+        // Sets Java compatibility to Java 8
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -48,7 +56,11 @@ android {
 
 dependencies {
 
+    // core
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     // UI
     implementation(libs.androidx.appcompat)
@@ -59,6 +71,12 @@ dependencies {
     // network
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    // paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
+    // glide
+    implementation(libs.glide)
 
     // TEST
     testImplementation(libs.junit)
