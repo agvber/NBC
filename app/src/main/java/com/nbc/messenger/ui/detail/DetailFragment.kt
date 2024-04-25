@@ -3,15 +3,19 @@ package com.nbc.messenger.ui.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract.Data
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.nbc.messenger.createNotificationChannel
 import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.FragmentDatailBinding
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
+import com.nbc.messenger.ui.main.ContactListFragment
 import com.nbc.messenger.showNumberSelectionDialog
 import com.nbc.messenger.ui.main.ContactListFragment
 
@@ -58,7 +62,7 @@ class DetailFragment : Fragment(), View.OnClickListener {
         binding.btnDetailCall.setOnClickListener(this)
         binding.btnDetailMsg.setOnClickListener(this)
         binding.llDetailNotification.setOnClickListener(this)
-
+        
         binding.btnDetailBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
@@ -87,6 +91,8 @@ class DetailFragment : Fragment(), View.OnClickListener {
             }
 
             binding.llDetailNotification -> {
+              ContactListFragment.showNumberSelectionDialog(requireContext()) { number ->
+                
                 showNumberSelectionDialog(requireContext()) { number ->
                     user?.let { context?.createNotificationChannel(it, number) }
                     user?.let { DataSource.updateIsChecked(it, false) }
