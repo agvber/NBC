@@ -107,7 +107,7 @@ class ContactListFragment : Fragment() {
 
             binding.recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
+                
             adapter.changeLayout(MyRecyclerViewLayout.LINEAR)
             adapter.updateItems(DataSource.getUsers())
         } else {
@@ -121,7 +121,7 @@ class ContactListFragment : Fragment() {
             }
         }
     }
-
+    
     override fun onDestroyView() {
         super.onDestroyView()
         adapter.unregisterItemClickListener()
