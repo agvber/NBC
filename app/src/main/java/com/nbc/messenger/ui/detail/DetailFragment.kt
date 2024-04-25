@@ -91,8 +91,6 @@ class DetailFragment : Fragment(), View.OnClickListener {
             }
 
             binding.llDetailNotification -> {
-              ContactListFragment.showNumberSelectionDialog(requireContext()) { number ->
-                
                 showNumberSelectionDialog(requireContext()) { number ->
                     user?.let { context?.createNotificationChannel(it, number) }
                     user?.let { DataSource.updateIsChecked(it, false) }
