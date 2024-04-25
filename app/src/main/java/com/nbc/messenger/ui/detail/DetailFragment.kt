@@ -13,6 +13,7 @@ import com.nbc.messenger.databinding.FragmentDatailBinding
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 import com.nbc.messenger.showNumberSelectionDialog
+import com.nbc.messenger.ui.main.ContactListFragment
 
 private const val USER_MEMORY = "user"
 
@@ -89,12 +90,10 @@ class DetailFragment : Fragment(), View.OnClickListener {
                 showNumberSelectionDialog(requireContext()) { number ->
                     user?.let { context?.createNotificationChannel(it, number) }
                     user?.let { DataSource.updateIsChecked(it, false) }
-
                 }
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

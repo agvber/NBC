@@ -1,6 +1,7 @@
 package com.nbc.messenger.ui.main.viewholder
 
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.nbc.messenger.R
 import com.nbc.messenger.databinding.ItemRecyclerviewBinding
@@ -31,5 +32,10 @@ class ListViewHolder(
         binding.tvUserName.text = item.name
         binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart01)
         Log.d("item:", "$item")
+
+        when (item.isChecked) {
+            false -> binding.redNum1.isVisible = true
+            true -> binding.redNum1.isVisible = false
+        }
     }
 }
