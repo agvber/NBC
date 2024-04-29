@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
@@ -39,6 +40,13 @@ class SearchViewModel(
         getImageListUseCase(query = it)
             .flow
             .cachedIn(viewModelScope)
+    }
+
+    private val _itemCheckList: MutableStateFlow<HashSet<String>> = MutableStateFlow(hashSetOf())
+    val itemCheckList = _itemCheckList.asStateFlow()
+
+    fun updateItemChecked(function: (HashSet<String>) -> HashSet<String>) {
+        _itemCheckList.update(function)
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package com.agvber.kakao_api.presentation.search
+package com.agvber.kakao_api.presentation.bookmark
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,15 +9,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.agvber.kakao_api.databinding.FragmentSearchBinding
+import com.agvber.kakao_api.databinding.FragmentBookmarkBinding
 import com.agvber.kakao_api.model.Images
+import com.agvber.kakao_api.presentation.search.SearchRecyclerViewAdapter
+import com.agvber.kakao_api.presentation.search.SearchViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class SearchFragment : Fragment() {
+class BookmarkFragment : Fragment() {
     private val viewModel: SearchViewModel by activityViewModels { SearchViewModel.viewModelFactory }
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: FragmentBookmarkBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: SearchRecyclerViewAdapter
@@ -27,7 +29,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentBookmarkBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,8 +52,8 @@ class SearchFragment : Fragment() {
         val recyclerviewLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        binding.searchRecyclerView.adapter = adapter
-        binding.searchRecyclerView.layoutManager = recyclerviewLayoutManager
+        binding.bookmarkRecyclerView.adapter = adapter
+        binding.bookmarkRecyclerView.layoutManager = recyclerviewLayoutManager
     }
 
     private fun searchRecyclerViewCheckChangeListener(item: Images.Item, isChecked: Boolean) {
@@ -77,4 +79,5 @@ class SearchFragment : Fragment() {
             adapter.submitData(it)
         }
     }
+
 }

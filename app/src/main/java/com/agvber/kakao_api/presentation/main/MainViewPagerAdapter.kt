@@ -1,32 +1,21 @@
 package com.agvber.kakao_api.presentation.main
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.agvber.kakao_api.databinding.ViewpagerMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.agvber.kakao_api.presentation.bookmark.BookmarkFragment
+import com.agvber.kakao_api.presentation.search.SearchFragment
 
 class MainViewPagerAdapter(
-    private val items: List<String>,
-    private val bindCallback: (String) -> Unit
-): RecyclerView.Adapter<MainViewPagerAdapter.MainViewPagerViewHolder>() {
+    activity: AppCompatActivity,
+) : FragmentStateAdapter(activity.supportFragmentManager, activity.lifecycle) {
 
-    inner class MainViewPagerViewHolder(
-        binding: ViewpagerMainBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    private val fragments = listOf(
+        SearchFragment(),
+        BookmarkFragment()
+    )
 
-        fun bind(position: Int) {
-            bindCallback(items[position])
-        }
-    }
+    override fun getItemCount(): Int = fragments.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewPagerViewHolder {
-        val view = ViewpagerMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainViewPagerViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: MainViewPagerViewHolder, position: Int) {
-        holder.bind(position)
-    }
-
-    override fun getItemCount(): Int = items.size
+    override fun createFragment(position: Int): Fragment = fragments[position]
 }
