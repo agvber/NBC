@@ -11,13 +11,14 @@ import com.agvber.kakao_api.model.Images
 import com.bumptech.glide.Glide
 
 class SearchRecyclerViewAdapter(
-    private val itemCheckedChangeListener: (Images.Item, Boolean) -> Unit
+    private val switchCallback: (String, Boolean) -> Unit,
 ) : PagingDataAdapter<Images.Item, SearchRecyclerViewAdapter.SearchRecyclerViewHolder>(diffUtil) {
 
-    private var itemCheckedContainer = setOf<String>()
+    private var itemCheckedSet: Set<String> = emptySet()
 
-    fun updateItemCheckedContainer(container: Set<String>) {
-        itemCheckedContainer = container
+    fun updateItemCheckedSet(checkedItem: Set<String>) {
+        itemCheckedSet = checkedItem
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchRecyclerViewHolder {
@@ -39,8 +40,9 @@ class SearchRecyclerViewAdapter(
 
         init {
             binding.customSwitch.setOnCheckedChangeListener { _, isChecked ->
-                val item = getItem(bindingAdapterPosition) ?: return@setOnCheckedChangeListener
-                itemCheckedChangeListener(item, isChecked)
+                getItem(bindingAdapterPosition)?.let {
+                    switchCallback(it.imageUrl.image, isChecked)
+                }
             }
         }
 
@@ -49,7 +51,7 @@ class SearchRecyclerViewAdapter(
                 .load(image.imageUrl.thumbnail)
                 .into(binding.searchImageView)
             binding.siteNameTextView.text = image.site.name
-            binding.customSwitch.isChecked = itemCheckedContainer.contains(image.imageUrl.image)
+            binding.customSwitch.isChecked = itemCheckedSet.contains(image.imageUrl.image)
         }
     }
 

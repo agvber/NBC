@@ -3,13 +3,16 @@ package com.agvber.kakao_api.presentation.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.agvber.kakao_api.data.repository.ImageRepository
 import com.agvber.kakao_api.data.repository.ImageRepositoryImpl
 import com.agvber.kakao_api.domain.GetImageListUseCase
+import com.agvber.kakao_api.model.Images
 import com.agvber.kakao_api.network.NetworkDataSource
 import com.agvber.kakao_api.network.retrofit.RetrofitNetwork
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,8 +34,15 @@ class SearchViewModel(
         }
     }
 
+    private val _itemCheckedSet: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
+    val itemCheckedSet: StateFlow<Set<String>> = _itemCheckedSet.asStateFlow()
+
+    fun updateItemCheckSet(checkedSet: (Set<String>) -> Set<String>) {
+        _itemCheckedSet.update(checkedSet)
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
-    val images = query.flatMapLatest {
+    val images: Flow<PagingData<Images.Item>> = query.flatMapLatest {
         if (it.isBlank()) {
             return@flatMapLatest emptyFlow()
         }
@@ -40,13 +50,6 @@ class SearchViewModel(
         getImageListUseCase(query = it)
             .flow
             .cachedIn(viewModelScope)
-    }
-
-    private val _itemCheckList: MutableStateFlow<HashSet<String>> = MutableStateFlow(hashSetOf())
-    val itemCheckList = _itemCheckList.asStateFlow()
-
-    fun updateItemChecked(function: (HashSet<String>) -> HashSet<String>) {
-        _itemCheckList.update(function)
     }
 
     companion object {

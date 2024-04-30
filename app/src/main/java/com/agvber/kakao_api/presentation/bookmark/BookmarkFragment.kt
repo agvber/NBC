@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agvber.kakao_api.databinding.FragmentBookmarkBinding
-import com.agvber.kakao_api.model.Images
 import com.agvber.kakao_api.presentation.search.SearchRecyclerViewAdapter
 import com.agvber.kakao_api.presentation.search.SearchViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -38,8 +36,12 @@ class BookmarkFragment : Fragment() {
 
         initRecyclerView()
 
-        lifecycleScope.collectRecyclerViewItem()
-        lifecycleScope.collectItemCheckList()
+        collectRecyclerViewItem()
+        lifecycleScope.launch {
+            viewModel.itemCheckedSet.collectLatest {
+                adapter.updateItemCheckedSet(it)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -48,7 +50,18 @@ class BookmarkFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = SearchRecyclerViewAdapter(this::searchRecyclerViewCheckChangeListener)
+        adapter = SearchRecyclerViewAdapter { imageUrl, isChecked ->
+            viewModel.updateItemCheckSet {
+                val mutableSet = it.toMutableSet()
+                if (isChecked) {
+                    mutableSet.add(imageUrl)
+                } else {
+                    mutableSet.remove(imageUrl)
+                }
+
+                mutableSet
+            }
+        }
         val recyclerviewLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -56,27 +69,9 @@ class BookmarkFragment : Fragment() {
         binding.bookmarkRecyclerView.layoutManager = recyclerviewLayoutManager
     }
 
-    private fun searchRecyclerViewCheckChangeListener(item: Images.Item, isChecked: Boolean) {
-        viewModel.updateItemChecked {
-            it.apply {
-                if (isChecked) {
-                    it.add(item.imageUrl.image)
-                    return@apply
-                }
-                it.remove(item.imageUrl.image)
-            }
-        }
-    }
-
-    private fun LifecycleCoroutineScope.collectItemCheckList() = launch {
-        viewModel.itemCheckList.collectLatest {
-            adapter.updateItemCheckedContainer(it)
-        }
-    }
-
-    private fun LifecycleCoroutineScope.collectRecyclerViewItem() = launch {
-        viewModel.images.collectLatest {
-            adapter.submitData(it)
+    private fun collectRecyclerViewItem() = lifecycleScope.launch {
+        viewModel.images.collect {
+            adapter.submitData(this@BookmarkFragment.lifecycle, it)
         }
     }
 
