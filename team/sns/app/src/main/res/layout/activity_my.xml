@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.MyActivity">
+
+    <!-- 최상단 -->
+
+    <View
+        android:id="@+id/view_gray"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="#FAFAFA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_my_cancel"
+        android:textColor="#262626"
+        app:layout_constraintBottom_toBottomOf="@+id/view_gray"
+        app:layout_constraintStart_toStartOf="@+id/view_gray" />
+
+    <TextView
+        android:id="@+id/tv_editprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_my_editProfileTitle"
+        android:textColor="#262626"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_gray"
+        app:layout_constraintEnd_toEndOf="@+id/view_gray"
+        app:layout_constraintStart_toStartOf="@+id/view_gray" />
+
+    <TextView
+        android:id="@+id/btn_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_my_done"
+        android:textColor="#3897F0"
+        app:layout_constraintBottom_toBottomOf="@+id/view_gray"
+        app:layout_constraintEnd_toEndOf="@+id/view_gray" />
+
+    <!-- 이미지 등록 영역 -->
+
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/img_round_myprofile"
+        android:clipToOutline="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_gray"
+        app:srcCompat="@drawable/img_profile2"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/btn_profilechange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:onClick="changeProfilePhoto"
+        android:text="@string/btn_my_changeProfile"
+        android:textColor="#3897F0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="24dp"
+        android:background="#4A3C3C43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profilechange" />
+
+    <!-- 이름 수정 -->
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/tv_my_name"
+            android:textColor="#262626"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:backgroundTint="#4A3C3C43"
+            android:hint="Text your name"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <!-- 아이디 수정 -->
+
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_1">
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/tv_my_id"
+            android:textColor="#262626"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:backgroundTint="#4A3C3C43"
+            android:enabled="false"
+            android:hint=" "
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <!-- 바이오 수정 -->
+
+    <LinearLayout
+        android:id="@+id/ll_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_2">
+
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/tv_my_bio"
+            android:textColor="#262626"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_bio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:backgroundTint="#4A3C3C43"
+            android:hint="Text your bio"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <!-- 이메일 수정 -->
+
+    <LinearLayout
+        android:id="@+id/ll_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_3">
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/tv_my_email"
+            android:textColor="#262626"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:backgroundTint="#4A3C3C43"
+            android:hint="Text your email"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <!-- 전화번호 수정 -->
+
+    <LinearLayout
+        android:id="@+id/ll_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_4">
+
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/tv_my_phone"
+            android:textColor="#262626"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:backgroundTint="#4A3C3C43"
+            android:hint="Text your phone"
+            android:singleLine="true" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_switchtologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/btn_my_switchToLogin"
+        android:textColor="#3897F0"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

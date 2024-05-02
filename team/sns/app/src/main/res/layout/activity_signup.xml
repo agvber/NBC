@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    android:background="@color/white"
+    tools:context=".ui.SignupActivity">
+
+    <ImageView
+        android:id="@+id/brand_log_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:src="@drawable/ic_brand_logo_large"
+        app:layout_constraintBottom_toTopOf="@+id/title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="@string/tv_signup_welcome"
+        android:textAlignment="center"
+        android:textColor="#8E8E8E"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/divider_li"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/divider_li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/edit_texts_li"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="1.4dp"
+            android:layout_weight="1"
+            app:dividerColor="#DBDBDB" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:text="@string/tv_signup_or"
+            android:textColor="#8E8E8E"
+            android:textStyle="bold" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="1.4dp"
+            android:layout_weight="1"
+            app:dividerColor="#DBDBDB" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/edit_texts_li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/phone_numer_or_email_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/et_signup"
+            android:hint="@string/et_signup_mobile_number_or_email"
+            android:maxLines="1"
+            android:minHeight="42dp"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/et_signup"
+            android:hint="@string/et_signup_full_name"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:minHeight="42dp"
+            android:paddingHorizontal="8dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/id_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/et_signup"
+            android:hint="@string/et_signup_id"
+            android:maxLines="1"
+            android:minHeight="42dp"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/et_signup"
+            android:hint="@string/et_signup_password"
+            android:maxLines="1"
+            android:minHeight="42dp"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_signup_confirm"
+        android:enabled="false"
+        android:text="@string/btn_signup_confirm"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@+id/edit_texts_li" />
+
+    <TextView
+        android:id="@+id/agree_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/tv_signup_agreement"
+        android:textAlignment="center"
+        android:textColor="#8E8E8E"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
