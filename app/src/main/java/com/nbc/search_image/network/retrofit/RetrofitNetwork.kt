@@ -3,6 +3,7 @@ package com.nbc.search_image.network.retrofit
 import com.nbc.search_image.network.NetworkDataSource
 import com.nbc.search_image.network.model.ImageResponse
 import com.nbc.search_image.network.model.NetworkImageSort
+import com.nbc.search_image.network.model.toRequestString
 import okhttp3.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,9 +40,3 @@ internal class RetrofitNetwork @Inject constructor(
         )
     }
 }
-
-private fun NetworkImageSort.toRequestString(): String =
-    when (this) {
-        NetworkImageSort.ACCURACY -> "accuracy"
-        NetworkImageSort.RECENCY -> "recency"
-    }
