@@ -1,6 +1,5 @@
 package com.nbc.search_image.network.di
 
-import com.nbc.search_image.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,6 +7,8 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
+
+private const val API_KEY = "9acd782890a75dd41e6a286c7acc4fbe"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -21,7 +22,7 @@ internal object NetworkModule {
                 with(it) {
                     val request = request().newBuilder()
                         .addHeader(
-                            "Authorization", "KakaoAK ${BuildConfig.KAKO_API_KEY}"
+                            "Authorization", "KakaoAK $API_KEY"
                         )
                         .build()
 

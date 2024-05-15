@@ -1,6 +1,3 @@
-import com.android.build.api.dsl.ApplicationDefaultConfig
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -20,8 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "com.nbc.search_image.HiltTestRunner"
-
-        setLocalProperties()
     }
 
     buildTypes {
@@ -94,11 +89,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-}
-
-fun ApplicationDefaultConfig.setLocalProperties() {
-    // LocalProperties data load
-    val localProperties = gradleLocalProperties(rootDir, providers)
-    val kakoApiKey: String = localProperties.getProperty("kako.api.key")
-    buildConfigField("String", "KAKO_API_KEY", kakoApiKey)
 }
